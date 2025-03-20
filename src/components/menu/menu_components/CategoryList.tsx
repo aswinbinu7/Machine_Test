@@ -21,7 +21,7 @@ export default function CategoryList() {
 
   const fetchCategories = () => {
     axios
-      .get<CategoryModel[]>("http://localhost:8000/categories")
+      .get<CategoryModel[]>("https://machine-test-19s0.onrender.com/categories")
       .then((response) => {
         setCategoryData(response.data);
         if (response.data.length > 0 && !selectedCategory) {
@@ -40,7 +40,7 @@ export default function CategoryList() {
     if (!newCategory.trim()) return alert("Please enter a category name!");
 
     try {
-      await axios.post("http://localhost:8000/categories", {
+      await axios.post("https://machine-test-19s0.onrender.com/categories", {
         name: newCategory,
       });
       setNewCategory("");
@@ -65,7 +65,7 @@ export default function CategoryList() {
             </SC_CategoryButton>
           ))}
 
-          {/*Add Category Button */}
+          {/* Add Category Button */}
           {!isAdding ? (
             <SC_AddButton onClick={() => setIsAdding(true)}>+</SC_AddButton>
           ) : (
@@ -86,10 +86,8 @@ export default function CategoryList() {
         </div>
       </SC_CategoryListComponent>
 
-      {/*Pass selectedCategory to MenuItemsHeader */}
-      {selectedCategory && (
-        <MenuItemsHeader selectedCategory={selectedCategory} />
-      )}
+      {/* Pass selectedCategory to MenuItemsHeader */}
+      {selectedCategory && <MenuItemsHeader selectedCategory={selectedCategory} />}
     </>
   );
 }

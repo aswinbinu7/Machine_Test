@@ -11,7 +11,7 @@ interface MenuItemModel {
 }
 
 interface Props {
-  selectedCategory: string | null;
+  selectedCategory: string;
 }
 
 export default function MenuItemsHeader({ selectedCategory }: Props) {
@@ -22,7 +22,7 @@ export default function MenuItemsHeader({ selectedCategory }: Props) {
 
     axios
       .get<MenuItemModel[]>(
-        `http://localhost:8000/menus?categoryId=${selectedCategory}`
+        `https://machine-test-19s0.onrender.com/menus?categoryId=${selectedCategory}`
       )
       .then((response) => setMenuItems(response.data))
       .catch((error) => console.error("Error fetching menu items:", error));
@@ -92,44 +92,6 @@ const SC_MenuItem = styled.div`
   padding: 15px;
   text-align: center;
   width: calc(50% - 50px);
-
-  .itemName {
-    display: flex;
-    justify-content: space-between;
-
-    h3 {
-      font-size: 15px;
-      text-transform: uppercase;
-    }
-
-    .itemPrice {
-      color: white;
-    }
-  }
-
-  .connector {
-    border-bottom: 1px dashed white;
-    flex: 0.9;
-    margin-bottom: 5px;
-  }
-
-  h3 {
-    margin: 0;
-  }
-
-  p {
-    margin: 0px;
-    font-size: 0.9em;
-    opacity: 0.8;
-    text-align: left;
-    font-weight: 500;
-    color: #707070;
-  }
-
-  span {
-    font-weight: bold;
-    color: #07c;
-  }
 `;
 
 const SC_MenuItemHeading = styled.div`
@@ -139,26 +101,4 @@ const SC_MenuItemHeading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  .data {
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    gap: 0.8em;
-    font-size: 29px;
-
-    &:before {
-      content: "";
-      width: 3em;
-      display: block;
-      border-bottom: 1px solid white;
-    }
-
-    &:after {
-      content: "";
-      width: 3em;
-      display: block;
-      border-bottom: 1px solid white;
-    }
-  }
 `;
